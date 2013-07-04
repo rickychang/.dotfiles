@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# homebrew packages to be installed
+HOMEBREW_PACKAGES="git python scala sbt node"
+
+
+
 # Text color variables
 TXTBLD=$(tput bold)             # Bold
 BLDRED=${TXTBLD}$(tput setaf 1) #  red
@@ -12,46 +17,51 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
+print_color() {
+	echo $@$TXTRST
+}
+
+print_blue() {
+	print_color $BLDBLU$@
+}
+
+print_red() {
+	print_color $BLDRED$@
+}
+
+print_green() {
+	print_color $BLDGRN$@
+}
+
+print_bold() {
+	print_color $TXTBLD$@
+}
+
 # checking for gcc and javac
-echo -n "$BLDBLU"
-echo "Checking for gcc..."
-echo -n "$TXTRST"
+print_blue "Checking for gcc..."
+
 
 if command_exists gcc ; then
-	echo -n "$BLDGRN"
-	echo "gcc is installed"
-	echo -n "$TXTRST"
+	print_green "gcc is installed"
 else
-	echo -n "$BLDRED"
-	echo "gcc is not installed.  Please install XCode and command line dev tools before running this script."
-	echo -n "$TXTRST"	
-	echo -e "$TXTBLD XCode: https://developer.apple.com/xcode/ $TXTRST"
-	echo -e "$TXTBLD Command Line Tools: https://connect.apple.com $TXTRST"
+	print_red "gcc is not installed.  Please install XCode and command line dev tools before running this script."
+	print_blue "XCode: https://developer.apple.com/xcode/"
+	print_blue "Command Line Tools: https://connect.apple.com"
 	exit 1
 fi
 
-echo -n "$BLDBLU"
-echo "Checking for javac..."
-echo -n "$TXTRST"
+print_blue "Checking for javac..."
 
 if command_exists javac ; then
-	echo -n "$BLDGRN"
-	echo "javac is installed"
-	echo -n "$TXTRST"
+	print_green "javac is installed"
 else
-	echo -n "$BLDRED"
-	echo "javac is not installed.  Please install Oracle JDK before running this script."
-	echo -n "$TXTRST"	
-	echo -e "$TXTBLD http://www.oracle.com/technetwork/java/javase/downloads/index.html $TXTRST"
+	print_red "javac is not installed.  Please install Oracle JDK before running this script."
+	print_blue "http://www.oracle.com/technetwork/java/javase/downloads/index.html"
 	exit 1
 fi
 
 # homebrew package installation
-echo -n "$BLDBLU"
-echo "Installing packages via homebrew."
-echo -n "$TXTRST"
-
-HOMEBREW_PACKAGES="git python scala sbt node"
+print_blue "Installing packages via homebrew."
 
 if command_exists brew ; then
 	for package in $HOMEBREW_PACKAGES; do
@@ -59,17 +69,13 @@ if command_exists brew ; then
 		brew install $package
 	done
 else
-	echo -n "$BLDRED"
-	echo "Homebrew is not installed.  Please install before running this script."
-	echo -n "$TXTRST"
-	echo -e "$TXTBLD http://mxcl.github.io/homebrew/ $TXTRST"
+	print_red "Homebrew is not installed.  Please install before running this script."
+	print_blue "http://mxcl.github.io/homebrew/"
 	exit 1
 fi
 
 # Git config commands
-echo -n "$BLDBLU"
-echo "Configuring git global settings."
-echo -n "$TXTRST"
+print_blue "Configuring git global settings."
 
 echo -n "Enter your git user.name: "
 read -e GIT_USERNAME
@@ -88,11 +94,7 @@ https://www.dropbox.com/downloading?src=index
 http://lightheadsw.com/caffeine/
 http://www.sublimetext.com/2"
 
-echo -n "$BLDBLU"
-echo "More apps you probably want to install:"
-echo -n "$TXTRST"
+print_blue "More apps you probably want to install:"
 for package in $OTHER_APPS; do
-	echo -n "$TXTBLD"
-	echo " $package "
-	echo -n "$TXTRST"
+	print_bold "$package"
 done
