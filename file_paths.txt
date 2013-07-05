@@ -1,0 +1,3 @@
+.sbtconfig
+Library/Fonts
+Library/Preferences/com.apple.Terminal.plist
