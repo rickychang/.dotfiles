@@ -1,1 +1,5 @@
 .backup
+files/.sbt/boot/
+files/.sbt/plugins/project/
+files/.sbt/plugins/target/
+files/.sbt/target/
