@@ -21,7 +21,7 @@ print_blue "Symlinks in $HOME will be created for the following files:"
 for file in ${FILES[@]}; do
 	echo -e "\t$file"
 done
-echo -e ""
+echo ""
 
 for file in ${FILES[@]}; do
     echo -e "Backing up existing $file"

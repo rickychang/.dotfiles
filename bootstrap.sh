@@ -2,8 +2,10 @@
 
 source common.sh
 
+PACKAGES_FILE='brew_packages.txt'
+
 # homebrew packages to be installed
-HOMEBREW_PACKAGES="git python scala sbt node"
+IFS=$'\n' read -d '' -r -a HOMEBREW_PACKAGES < $PACKAGES_FILE
 
 
 # checking for gcc and javac
@@ -23,7 +25,7 @@ fi
 
 print_blue "Checking for javac..."
 
-if ! command_exists javac ; then
+if command_exists javac ; then
 	print_green "javac is installed"
 else
 	print_red "javac is not installed.  Please install Oracle JDK before running this script."
@@ -36,7 +38,7 @@ fi
 print_blue "Installing packages via homebrew."
 
 if command_exists brew ; then
-	for package in $HOMEBREW_PACKAGES; do
+	for package in ${HOMEBREW_PACKAGES[@]}; do
 		echo "Installing $package"
 		brew install $package
 	done
@@ -68,6 +70,7 @@ http://www.sublimetext.com/2
 https://agilebits.com/downloads"
 
 print_blue "More apps you probably want to install:"
-for package in $OTHER_APPS; do
-	print_bold "$package"
+for app_link in $OTHER_APPS; do
+	print_bold "$app_link"
+	open $app_link
 done
