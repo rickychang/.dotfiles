@@ -24,14 +24,15 @@ done
 echo ""
 
 for file in ${FILES[@]}; do
-    echo -e "Backing up existing $file"
-    if [ -e $HOME/$file ] || [ -L $HOME/$file ]; then
-    	if rsync -rR $file $BACKUPDIR || [ -L $HOME/$file ] ; then
+    if [ -e $HOME/$file ] ; then
+    	echo -e "Backing up existing $file"
+    	rsync -rR $file $BACKUPDIR
+    fi
+    if [ -e $HOME/$file ] || [ -L $HOME/$file ] ; then
     		print_red "Deleting existing $HOME/$file"
     		sudo rm -fr $HOME/$file
-    	fi
     fi
     print_green "Creating symlink to $file in home directory"
-    ln -s $DIR/$file $HOME/$file
+    ln -s $FILES_DIR/$file $HOME/$file
     echo ""
 done
