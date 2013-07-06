@@ -1,3 +1,5 @@
 .sbtconfig
+.sbt/plugins/plugins.sbt
+.sbt/global.sbt
 Library/Fonts
 Library/Preferences/com.apple.Terminal.plist

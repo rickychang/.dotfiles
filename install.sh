@@ -24,14 +24,23 @@ done
 echo ""
 
 for file in ${FILES[@]}; do
+	# if a file already exists, back it up
     if [ -e $HOME/$file ] ; then
     	echo -e "Backing up existing $file"
     	rsync -rR $file $BACKUPDIR
     fi
+    # if a file or symlink already exists, delete it
     if [ -e $HOME/$file ] || [ -L $HOME/$file ] ; then
     		print_red "Deleting existing $HOME/$file"
     		sudo rm -fr $HOME/$file
-    fi
+    # otherwise, create directories that will contain symlink
+	else
+		REQ_DIR=$(dirname $file)
+		if ! [ -d $REQ_DIR ]; then
+			echo -e "Creating required directory $directory"
+			mkdir -p $REQ_DIR
+		fi
+	fi
     print_green "Creating symlink to $file in home directory"
     ln -s $FILES_DIR/$file $HOME/$file
     echo ""
