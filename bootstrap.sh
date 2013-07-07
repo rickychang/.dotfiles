@@ -60,6 +60,11 @@ git config --global user.email "$GIT_USEREMAIL"
 echo "Enabling colors for git terminal output"
 git config --global color.ui true
 
+# Change some OS X settings via defaults write commands
+
+# Disable downloaded application warnings
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
 # Other apps you usually want installed
 
 OTHER_APPS="https://www.google.com/intl/en/chrome/browser/
