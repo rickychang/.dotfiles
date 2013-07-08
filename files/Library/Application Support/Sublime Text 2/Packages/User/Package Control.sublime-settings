@@ -1,0 +1,14 @@
+{
+	"auto_upgrade_last_run": null,
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"DetectSyntax",
+		"Live CSS",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"Package Control",
+		"Sass",
+		"Theme - Soda"
+	]
+}

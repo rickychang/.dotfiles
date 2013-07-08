@@ -6,7 +6,7 @@ FILES_DIR=$(pwd)/files
 BACKUPDIR=$(pwd)/.backup
 PATH_FILE='file_paths.txt'
 
-IFS=$'\n' read -d '' -r -a FILES < $PATH_FILE
+IFS=$'\n'; set -f; FILES=($(<$PATH_FILE))
 
 # create backup directory
 print_blue "Creating $BACKUPDIR for backup of any existing files"
