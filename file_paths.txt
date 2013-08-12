@@ -4,4 +4,5 @@
 .sbt/global.sbt
 Library/Fonts
 Library/Preferences/com.apple.Terminal.plist
+Library/Preferences/com.irradiatedsoftware.SizeUp.plist
 Library/Application Support/Sublime Text 2/Packages
