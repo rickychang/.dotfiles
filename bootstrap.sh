@@ -48,6 +48,10 @@ else
 	exit 1
 fi
 
+print_blue "Installing brew cask."
+brew tap phinze/homebrew-cask
+brew install brew-cask
+
 # Git config commands
 print_blue "Configuring git global settings."
 
@@ -60,22 +64,31 @@ git config --global user.email "$GIT_USEREMAIL"
 echo "Enabling colors for git terminal output"
 git config --global color.ui true
 
-# Change some OS X settings via defaults write commands
+# Change some OS X settings
+
+# Create ~/bin
+mkdir ~/bin
+
+# Change default shell
+chsh -s /bin/bash
 
 # Disable downloaded application warnings
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Other apps you usually want installed
 
-OTHER_APPS="https://www.google.com/intl/en/chrome/browser/
-http://www.irradiatedsoftware.com/sizeup/
-https://www.dropbox.com/downloading?src=index
-http://lightheadsw.com/caffeine/
-http://www.sublimetext.com/2
-https://agilebits.com/downloads"
+CASK_APPS="google-chrome
+one-password
+sizeup
+dropbox
+caffeine
+sublime-text
+colloquy"
 
-print_blue "More apps you probably want to install:"
-for app_link in $OTHER_APPS; do
-	print_bold "$app_link"
-	open $app_link
+ln -s $HOME/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl ~/bin/subl
+
+print_blue "installing brew cask apps:"
+for app in $CASK_APPS; do
+	print_bold "Installing $app"
+	brew cask install $app
 done
