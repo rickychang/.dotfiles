@@ -3,6 +3,7 @@
 source common.sh
 
 PACKAGES_FILE='brew_packages.txt'
+HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # homebrew packages to be installed
 IFS=$'\n' read -d '' -r -a HOMEBREW_PACKAGES < $PACKAGES_FILE
@@ -85,7 +86,7 @@ caffeine
 sublime-text
 colloquy"
 
-ln -s $HOME/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl ~/bin/subl
+ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl ~/bin/subl
 
 print_blue "installing brew cask apps:"
 for app in $CASK_APPS; do
