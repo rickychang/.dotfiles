@@ -84,7 +84,8 @@ sizeup
 dropbox
 caffeine
 sublime-text
-colloquy"
+colloquy
+jumpcut"
 
 ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl ~/bin/subl
 
