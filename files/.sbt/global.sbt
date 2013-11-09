@@ -1,7 +1,5 @@
 import AssemblyKeys._ // put this at the top of the file
 
-scalaVersion := "2.10.2"
-
 assemblySettings
 
 seq(npSettings: _*)
