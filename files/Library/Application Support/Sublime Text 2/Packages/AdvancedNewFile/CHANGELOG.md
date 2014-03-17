@@ -1,4 +1,31 @@
 # Changelog for AdvancedNewFile
+Information from future releases can be seen by browsing the `messages` directory for the version.
+
+- 9 November 2013 / 1.0.0
+    - Switch to semantic versioning.
+    - Rename default with special token for current file.
+    - README updates.
+
+- 4 October 2013
+    - Rename file using side bar context menu.
+    - Set folder and file permissions for created folders and files.
+
+- 23 September 2013
+    - Support renaming current file.
+
+- 9 September 2013
+    - Bug fix for folder creation.
+    - Bug fix for permission issue.
+    - Add default extension setting.
+
+- 2 September 2013
+    - Add setting to begin all relative paths from current working directory if available.
+
+- 14 August 2013
+    - Prompt completion type for first token when using Windows completion.
+    - Fix bug with path autocompletion.
+    - Fix bug for tab completion with no view.
+
 - 27 July 2013
     - Rewrite autocomplete functionality.
     - Bug Fixes

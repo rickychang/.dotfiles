@@ -11,11 +11,16 @@
     "browser": "default",
 
     /*
-        Sets the default parser for converting markdown to html.
-        Warning for github API : if you have a ST2 linux build, Python is not built with SSL o it may not work
+        Sets the parser used for build markdown to html.
 
-        default - Use the builtin python-markdown2 parser
+        NOTE: The parser setting is not for the preview commands now. 
+        The preivew have sperated commands for each parser markdown.
+
+        Warning for github API : if you have a ST2 linux build, Python is not built with SSL so it may not work
+
+        default - The current default parser is python-markdown parser.
         markdown - Use the buildin python-markdown parser
+        markdown2 - (Deprecated) Use the builtin python-markdown2 parser.
         github - User github API to convert markdown, so you can use GitHub flavored Markdown, see http://github.github.com/github-flavored-markdown/
     */
     "parser": "default",
@@ -51,7 +56,7 @@
     "enabled_extensions": "default",
 
     /*
-        Default mode for the github Markdon parser : markdown (documents) or gfm (comments)
+        Default mode for the github Markdown parser : markdown (documents) or gfm (comments)
         see http://developer.github.com/v3/markdown/#render-an-arbitrary-markdown-document
     */
     "github_mode": "markdown",
@@ -59,7 +64,7 @@
     /*
         Uses an OAuth token to when parsing markdown with GitHub API. To create one for Markdown Preview, see https://help.github.com/articles/creating-an-oauth-token-for-command-line-use.
     */
-    // "github_oauth_token": "secret"
+    // "github_oauth_token": "secret",
 
     /*
         Sets the default css file to embed in the HTML
@@ -78,6 +83,22 @@
     "allow_css_overrides": true,
 
     /*
+        Specify a HTML template file to render your markdown within.
+
+        Available place holders in HTML template:
+        {{ HEAD }} - would be replaced by generated stylesheets, javascripts enabled above
+        {{ BODY }} - would be replaced by HTML converted from markdown
+
+        By setting "skip_default_stylesheet" to true you can use the styles only in your HTML
+        templat. In most case you should turn this setting on to have a full featured design.
+
+        Refer to 'customized-template-sample.html' as a show case.
+    */
+    // "html_template": "/ABS_PATH_TO_A_HTML_FILE",
+    // "skip_default_stylesheet": true,
+
+
+    /*
         Sets the JavaScript files to embed in the HTML
 
         Set an array of URLs or filepaths to JavaScript files. Absolute filepaths will be loaded
@@ -93,17 +114,29 @@
 
     /*
         Sets a custom temporary folder for MarkdownPreview-generated html files. Useful if you're
-        using LiveReload and don't want to use the OS default. The directory must already exist.
+        using LiveReload and don't want to use the OS default. The directory will be created if not
+        exists. Relative path is supportted, and is checked against `os.path.isabs`, see doc:
+        http://docs.python.org/3/library/os.path.html#os.path.isabs
 
-        Examples: /tmp/custom_folder   (Linux/OSX)
-                  C:/TEMP/MYNOTES      (Windows - note it's forward slash, even on Windows)
+        Examples: /tmp/custom_folder   (Linux/OSX - absolute path)
+                  C:/TEMP/MYNOTES
+                  C:\\TEMP\\MYNOTES    (Windows - absolute path, forward slash or escaped back slash)
+                  build                (All OS - relative path, current dir)
+                  ../build             (Linux/OSX - relative path, in parent dir)
+                  ..\\build            (Windows - relative path, in parent dir)
     */
     // "path_tempfile": "/tmp/my_notes",
 
     /*
         Strips the YAML front matter header and converts title to a heading
     */
-    "strip_yaml_front_matter": false
+    "strip_yaml_front_matter": false,
+
+    /* do we show the panel when build with CMD+B */
+    "show_panel_on_build": true,
+
+    /* do we include the CSS in when outputing HTML into a new sublime view ? */
+    "embed_css_for_sublime_output": true
 }
 
 
