@@ -1,4 +1,0 @@
-[
-	{ "keys": ["ctrl+shift+f"], "command": "toggle_full_screen"},
-    { "keys": ["super+ctrl+f"], "command": "reindent" }
-]

@@ -1,1 +1,0 @@
-seq(npSettings: _*)

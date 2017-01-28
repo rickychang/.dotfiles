@@ -49,10 +49,6 @@ else
 	exit 1
 fi
 
-print_blue "Installing brew cask."
-brew tap phinze/homebrew-cask
-brew install brew-cask
-
 # Git config commands
 print_blue "Configuring git global settings."
 
@@ -78,14 +74,11 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Other apps you usually want installed
 
-CASK_APPS="google-chrome
-one-password
+CASK_APPS="one-password
 sizeup
 dropbox
 caffeine
-sublime-text
-colloquy
-jumpcut"
+sublime-text"
 
 ln -s /Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl ~/bin/subl
 
